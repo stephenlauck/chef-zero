@@ -20,6 +20,7 @@
 
 script = "/etc/init.d/#{node['chef-zero']['daemon']}"
 
+# This is a chef_gem because we actually want to run this from inside Chef
 chef_gem 'chef-zero' do
   version   node['chef-zero']['version']
   only_if   { node['chef-zero']['install'] }
