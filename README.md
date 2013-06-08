@@ -2,6 +2,8 @@ Chef Zero Cookbook
 ------------------
 A cookbook for managing Chef Zero installation (as a service).
 
+Sorry, documentation coming soon. For now, read the attributes file.
+
 # Requirements
 
 # Usage
