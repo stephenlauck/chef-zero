@@ -15,5 +15,8 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[chef-zero]"]
-  attributes: {}
+  run_list: ['recipe[chef-zero]']
+  attributes:
+    chef-zero:
+      install: true
+      start: true

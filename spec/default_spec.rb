@@ -9,7 +9,14 @@ describe 'chef-zero::default' do
   platforms.each do |platform, versions|
     versions.each do |version|
       context "on #{platform.capitalize} #{version}" do
-        let(:chef_run) { ChefSpec::ChefRunner.new(platform: platform, version: version).converge('chef-zero::default') }
+        let(:chef_run) do
+          ChefSpec::ChefRunner.new(platform: platform, version: version) do |node|
+            node.override['chef-zero'] = {
+              'install' => true,
+              'start'   => true,
+            }
+          end.converge('chef-zero::default')
+        end
 
         it 'uses the build-essential recipe' do
           expect(chef_run).to include_recipe('build-essential::default')

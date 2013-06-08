@@ -22,8 +22,9 @@
 # The version of the Chef Zero gem to install
 default['chef-zero']['version'] = '1.4'
 
-# Whether to install the Chef Zero gem (since it was packaged in Chef)
-default['chef-zero']['install'] = true
+# Whether to install/start the Chef Zero gem (since it was packaged in Chef)
+default['chef-zero']['install'] = false
+default['chef-zero']['start']   = false
 
 # The name of the daemon (/etc/init.d/#{name})
 default['chef-zero']['daemon'] = 'chef-zero'

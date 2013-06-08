@@ -44,4 +44,5 @@ service node['chef-zero']['daemon'] do
   stop_command      "#{script} stop"
   restart_command   "#{script} restart"
   action            [:enable, :start]
+  only_if { node['chef-zero']['start'] }
 end

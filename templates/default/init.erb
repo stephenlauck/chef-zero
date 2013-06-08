@@ -22,23 +22,21 @@ sig () {
 case "$1" in
   start)
     sig 0 && echo >&2 "Chef Zero is already running!" && exit 1
-    echo "Starting Chef Zero ($HOST:$PORT)..."
-    $CMD &
+    echo -n "Starting Chef Zero ($HOST:$PORT)..."
+    $CMD 2>&1 > /dev/null &
+
     echo $! > $PID
+    echo "   [OK]"
     ;;
   stop)
-    sig QUIT  && echo "Stopping Chef Zero..." && exit 0
+    sig TERM  && echo "Stopping Chef Zero..." && rm -f $PID && exit 0
     echo >&2 "Chef Zero is not running!" && exit 1
-    ;;
-  force-stop)
-    sig TERM && echo "Force stopping Chef Zero..." && exit 0
-    echo >&2 echo "Chef Zero is not running!" && exit 1
     ;;
   restart)
     stop || start
     ;;
   *)
-    echo >&2 "Usage: $0 {start|stop|force-stop|restart}"
+    echo >&2 "Usage: $0 {start|stop|restart}"
     exit 1
     ;;
 esac
