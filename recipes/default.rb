@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+include_recipe 'build-essential'
+
 script = "/etc/init.d/#{node['chef-zero']['daemon']}"
 
 # This is a chef_gem because we actually want to run this from inside Chef

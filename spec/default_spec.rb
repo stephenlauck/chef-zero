@@ -1,4 +1,4 @@
-require 'chefspec'
+require 'spec_helper'
 
 describe 'chef-zero::default' do
   platforms = {
@@ -10,6 +10,10 @@ describe 'chef-zero::default' do
     versions.each do |version|
       context "on #{platform.capitalize} #{version}" do
         let(:chef_run) { ChefSpec::ChefRunner.new(platform: platform, version: version).converge('chef-zero::default') }
+
+        it 'uses the build-essential recipe' do
+          expect(chef_run).to include_recipe('build-essential::default')
+        end
 
         it 'installs the chef-zero gem' do
           expect(chef_run).to install_chef_gem_at_version('chef-zero', '1.4')
