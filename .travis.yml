@@ -1,0 +1,3 @@
+script:
+  - bundle exec rspec --color
+  - bundle exec kitchen test
