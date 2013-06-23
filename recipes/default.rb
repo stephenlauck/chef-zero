@@ -34,7 +34,7 @@ template script do
   mode      '0755'
   source    'init.erb'
   variables(
-    bin_path: File.expand_path(File.join(node['chef_packages']['chef']['chef_root'], '..', '..', '..', '..', '..', '..', '..', 'bin'))
+    :command => ChefZeroCookbook::Helpers.command(node)
   )
 end
 
@@ -44,5 +44,5 @@ service node['chef-zero']['daemon'] do
   stop_command      "#{script} stop"
   restart_command   "#{script} restart"
   action            [:enable, :start]
-  only_if { node['chef-zero']['start'] }
+  only_if           { node['chef-zero']['start'] }
 end

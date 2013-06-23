@@ -10,11 +10,6 @@
 
 PID="/var/run/<%= node['chef-zero']['daemon'] %>.pid"
 
-HOST="<%= node['chef-zero']['host'] %>"
-PORT="<%= node['chef-zero']['port'] %>"
-GENERATE_REAL_KEYS="<%= node['chef-zero']['generate_real_keys'] %>"
-CMD="<%= @bin_path %>/chef-zero --host $HOST --port $PORT --generate-keys $GENERATE_REAL_KEYS"
-
 sig () {
   test -s "$PID" && kill -$1 `cat "$PID"`
 }
@@ -22,9 +17,7 @@ sig () {
 case "$1" in
   start)
     sig 0 && echo >&2 "Chef Zero is already running!" && exit 1
-    echo -n "Starting Chef Zero ($HOST:$PORT)..."
-    $CMD 2>&1 > /dev/null &
-
+    <%= @command %>
     echo $! > $PID
     echo "   [OK]"
     ;;

@@ -23,6 +23,6 @@ maintainer_email 'sethvargo@gmail.com'
 license          'apachev2'
 description      'Installs Chef Zero on pre-chef-zero included Chef releases.'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.2.1'
+version          '2.0.0'
 
 depends 'build-essential'

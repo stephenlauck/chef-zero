@@ -20,7 +20,7 @@
 #
 
 # The version of the Chef Zero gem to install
-default['chef-zero']['version'] = '1.4'
+default['chef-zero']['version'] = '1.5.1'
 
 # Whether to install/start the Chef Zero gem (since it was packaged in Chef)
 default['chef-zero']['install'] = false
@@ -32,8 +32,8 @@ default['chef-zero']['daemon'] = 'chef-zero'
 # The IP Address or hostname to listen on
 default['chef-zero']['host'] = '0.0.0.0'
 
-# The port to listen on
-default['chef-zero']['port'] = '80'
+# The port or socket to listen on
+default['chef-zero']['listen'] = '80'
 
 # Set to true if the server should generate real keys
 default['chef-zero']['generate_real_keys'] = false

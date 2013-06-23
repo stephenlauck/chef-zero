@@ -23,7 +23,7 @@ describe 'chef-zero::default' do
         end
 
         it 'installs the chef-zero gem' do
-          expect(chef_run).to install_chef_gem_at_version('chef-zero', '1.4')
+          expect(chef_run).to install_chef_gem_at_version('chef-zero', '1.5.1')
         end
 
         it 'drops the /etc/init.d script' do

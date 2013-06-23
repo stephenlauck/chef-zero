@@ -85,9 +85,9 @@ Attributes
       <td><tt>0.0.0.0</tt></td>
     </tr>
     <tr>
-      <td>port</td>
-      <td>the port to listen on</td>
-      <td><tt>5678</tt></td>
+      <td>listen</td>
+      <td>the port or socket to listen on</td>
+      <td><tt>/tmp/chef-zero.sock</tt></td>
       <td><tt>80</tt></td>
     </tr>
     <tr>
