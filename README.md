@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sethvargo-cookbooks/chef-zero.png?branch=master)](https://travis-ci.org/sethvargo-cookbooks/chef-zero)
+
 Chef Zero Cookbook
 ==================
 A cookbook for managing Chef Zero installation (as a service).
