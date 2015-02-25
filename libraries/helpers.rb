@@ -30,7 +30,7 @@ module ChefZeroCookbook
 
     private
       def bin_path
-        File.expand_path(File.join(node['chef_packages']['chef']['chef_root'], '..', '..', '..', '..', '..', '..', '..', 'bin'))
+        File.expand_path(File.join(node['chef_packages']['chef']['chef_root'], '..', '..', '..', 'bin'))
       end
 
       def app
