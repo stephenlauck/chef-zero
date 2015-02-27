@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe 'chef-zero::default' do
   platforms = {
-    'ubuntu' => ['10.04', '12.04'],
-    'centos' => ['5.8', '6.3'],
+    'ubuntu' => ['12.04', '14.04'],
+    'centos' => ['6.5', '7.0'],
   }
 
   platforms.each do |platform, versions|
     versions.each do |version|
       context "on #{platform.capitalize} #{version}" do
         let(:chef_run) do
-          ChefSpec::ChefRunner.new(platform: platform, version: version) do |node|
+          ChefSpec::ServerRunner.new(platform: platform, version: version) do |node|
             node.override['chef-zero'] = {
               'install' => true,
               'start'   => true,
@@ -23,23 +23,23 @@ describe 'chef-zero::default' do
         end
 
         it 'installs the chef-zero gem' do
-          expect(chef_run).to install_chef_gem_at_version('chef-zero', '1.5.1')
+          expect(chef_run).to install_chef_gem('chef-zero').with(version: '1.5.1')
         end
 
-        it 'drops the /etc/init.d script' do
-          expect(chef_run).to create_file_with_content('/etc/init.d/chef-zero', '### BEGIN INIT INFO')
-        end
-
-        it 'sets the correct permissions' do
-          expect(chef_run.template('/etc/init.d/chef-zero')).to be_owned_by('root', 'root')
-        end
-
-        it 'sets the correct mode' do
-          expect(chef_run.template('/etc/init.d/chef-zero').mode).to eq('0755')
+        it 'drops the /etc/init.d script with correct permissions' do
+          expect(chef_run).to create_template('/etc/init.d/chef-zero').with(
+            user: 'root',
+            group: 'root',
+            mode: '0755'
+          )
         end
 
         it 'starts the service' do
-          expect(chef_run).to set_service_to_start_on_boot 'chef-zero'
+          expect(chef_run).to start_service('chef-zero')
+        end
+
+        it 'enables the service' do
+          expect(chef_run).to enable_service('chef-zero')
         end
       end
     end
